@@ -124,10 +124,18 @@ const HoverProjectCard = ({ project, index }) => {
             <div className="font-mono text-[10px] text-[#ccff00] uppercase tracking-widest flex items-center gap-2">
               <Focus className="w-4 h-4 animate-pulse" /> Hover to decrypt & view links
             </div>
-            {/* Impact Sneak Peek */}
-            {project.impact && (
-              <div className="font-mono text-[9px] text-zinc-400 bg-zinc-900 border border-zinc-800 p-2 border-l-2 border-l-[#ccff00]">
-                {project.impact}
+            {/* Project Status / Impact */}
+            {(project.status || project.impact) && (
+              <div
+                className={`font-mono text-[9px] text-zinc-400 bg-zinc-900 border border-zinc-800 p-2 border-l-2 ${
+                  project.status
+                    ? "border-l-amber-400"
+                    : "border-l-[#ccff00]"
+                }`}
+              >
+                {project.status
+                  ? `STATUS: ${project.status}`
+                  : project.impact}
               </div>
             )}
           </div>
@@ -163,7 +171,7 @@ const HoverProjectCard = ({ project, index }) => {
             )}
             {!project.github && !project.live && (
               <span className="text-[10px] font-mono font-bold uppercase text-black/50 border border-black/10 px-3 py-2">
-                Internal / Offline Build
+                Project Link Coming Soon
               </span>
             )}
           </div>
@@ -220,65 +228,85 @@ export default function App() {
   // COMPILED PROJECTS WITH ACTUAL LINKS AND IMPACT
   const projects = [
     {
-      id: "SYS.01", title: "LEETBOT SAAS", type: "Full-Stack Automation",
-      specs: ["Chrome API", "React", "Node.js", "MongoDB", "Monaco Injection"],
-      desc: "Fully automated Chrome extension solving complex coding problems by injecting logic into the DOM. Backed by a full Node/MongoDB SaaS credit-billing system.",
-      impact: "Handled extensive automated DOM injections bypassing standard limits.",
-      github: "https://github.com/Yogarathinam/leetcoder-2025"
+      id: "SYS.01",
+      title: "SMART CITY AI",
+      type: "Urban Data & AI",
+      specs: [
+        "Python",
+        "Data Analysis",
+        "Urban Insights",
+        "Visualization"
+      ],
+      desc: "A Python-based project focused on analyzing urban data, including traffic, energy usage, waste management, and public services to support smarter city planning.",
+      impact: "Python-based urban analytics project.",
+      status: "UNDER PROGRESS",
     },
     {
-      id: "SYS.02", title: "PROCTIFY PORTAL", type: "Networking & Web",
-      specs: ["TypeScript", "React", "Node.js", "WebRTC"],
-      desc: "Robust online MCQ platform with user authentication, test management, and automated evaluation.",
-      impact: "Successfully used and tested by 100+ students for real-time assessment.",
-      github: "https://github.com/Yogarathinam/proctify_portal_frontend"
+      id: "SYS.02",
+      title: "INBOXOPS",
+      type: "Email-to-Action Automation",
+      specs: [
+        "JavaScript",
+        "Email Parsing",
+        "Task Automation",
+        "Workflow Automation"
+      ],
+      desc: "A business automation application designed to turn email messages and attachments into structured tasks and records, reducing repetitive manual data entry.",
+      impact: "Email-to-action automation project.",
+      github: "https://github.com/Hrithik1881/InboxOps-Email-to-Action-Automation",
     },
     {
-      id: "SYS.03", title: "BRAILLEX HMI", type: "Hardware & Accessibility",
-      specs: ["Java", "Android", "TTS API", "Hardware Logic", "Gesture UI"],
-      desc: "Tactile touch-based Braille input system featuring a 6-dot virtual mechanism, real-time audio TTS feedback, and custom gesture actions for the visually impaired.",
-      impact: "Designed specifically for real usability with zero-friction blind-friendly UX.",
-      github: "https://github.com/Yogarathinam/braillex-Blind-Assistive-System"
+      id: "SYS.03",
+      title: "SALES PERFORMANCE ANALYTICS",
+      type: "Data Analytics",
+      specs: [
+        "SQL",
+        "Power BI",
+        "Excel",
+        "Data Visualization"
+      ],
+      desc: "A planned analytics dashboard focused on exploring sales trends, revenue performance, product comparisons, and regional results to support business decisions.",
+      status: "UNDER PROGRESS",
     },
     {
-      id: "SYS.04", title: "AI SHOP FLOOR SAFETY", type: "Computer Vision & Edge",
-      specs: ["OpenCV", "Microcontrollers", "Python", "Alert System"],
-      desc: "PPE violation detection system processing video frames in real-time. Integrated directly with a microcontroller-based alert system for industrial environments.",
-      impact: "Won 1st Prize at 24-Hour Dev Arena Hackathon.",
-      github: "https://github.com/Yogarathinam/AIVA-autonomous-saftey-system"
+      id: "SYS.04",
+      title: "CUSTOMER SEGMENTATION",
+      type: "Customer Analytics",
+      specs: [
+        "Python",
+        "Pandas",
+        "SQL",
+        "Customer Segmentation"
+      ],
+      desc: "A planned analytics project exploring customer purchasing patterns and grouping customers into meaningful segments to understand behavior and engagement.",
+      status: "UNDER PROGRESS",
     },
     {
-      id: "SYS.05", title: "AI AUTO-ANSWER", type: "Smart Browser Tool",
-      specs: ["Gemini API", "Prompt Engineering", "DOM Parsing", "JS"],
-      desc: "Intelligent extension that autonomously parses webpage DOMs, categorizes inputs (MCQ vs Descriptive), and injects context-aware answers utilizing LLM APIs.",
-      impact: "Fully automated pipeline with smart dual-prompt fallback capabilities.",
-      github: "https://github.com/Yogarathinam/Gemini-Auto-Solver"
+      id: "SYS.05",
+      title: "FINANCIAL INSIGHTS",
+      type: "Financial Data Analytics",
+      specs: [
+        "Excel",
+        "SQL",
+        "Power BI",
+        "Financial KPIs"
+      ],
+      desc: "A planned analytics dashboard for examining income, expenses, budget trends, and financial KPIs through organized datasets and visual reports.",
+      status: "UNDER PROGRESS",
     },
     {
-      id: "SYS.06", title: "ADAPTIVE RC SYSTEM", type: "Robotics Control",
-      specs: ["ESP32", "L293D Motors", "Voice Commands", "Camera Feed"],
-      desc: "Adaptive control system for a robotics chassis featuring multilingual voice command execution, autonomous obstacle detection, and a live web-camera interface.",
-      impact: "Achieved seamless WSAD web integration with active obstacle avoidance.",
-      github: "https://github.com/Yogarathinam/Adaptive-Control-System-For-RC-Car"
+      id: "SYS.06",
+      title: "BUSINESS INTELLIGENCE DASHBOARD",
+      type: "Business Intelligence",
+      specs: [
+        "Power BI",
+        "SQL",
+        "KPI Reporting",
+        "Dashboards"
+      ],
+      desc: "A planned business intelligence solution that brings key performance indicators into a unified dashboard for monitoring business performance and identifying trends.",
+      status: "UNDER PROGRESS",
     },
-    {
-      id: "SYS.07", title: "PROJECT JARVIS", type: "Conversational Robotics",
-      specs: ["STT/TTS APIs", "Pan-Tilt Servos", "Arduino", "LLaMA Integration"],
-      desc: "Voice-interactive humanoid head. Custom software pipeline mapping voice activity detection and AI reasoning states to physical, multi-axis servo actuation.",
-      impact: "Real-time multilingual (Tamil/Eng/Telugu) synchronization."
-    },
-    {
-      id: "SYS.08", title: "LIGHTSYNC MIDI", type: "Embedded Visualization",
-      specs: ["Embedded C", "ESP32", "Hardware PWM", "MIDI Protocols"],
-      desc: "Embedded system synchronizing MIDI piano inputs with LED outputs. Maps complex digital signals to precise physical LED patterns for interactive learning.",
-      impact: "1st Prize Winner - Big Prototype Contest. Zero perceivable latency."
-    },
-    {
-      id: "SYS.09", title: "ECOLENS EDGE™", type: "Edge AI Computing",
-      specs: ["Computer Vision", "Edge AI", "Embedded C++", "IoT Telemetry"],
-      desc: "AI-powered edge device architected for sustainable waste segregation. Classifies plastic, organic, and metal waste in real-time with zero cloud processing dependency.",
-      impact: "Hardware-level ML inference optimized for low latency."
-    }
   ];
 
   return (
