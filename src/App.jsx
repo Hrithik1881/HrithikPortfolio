@@ -225,6 +225,49 @@ export default function App() {
     };
   }, []);
 
+  // PROFESSIONAL INTERNSHIP EXPERIENCES
+  const experiences = [
+    {
+      id: "EXP-01",
+      company: "UNIQ Technology",
+      location: "T. Nagar, Chennai",
+      duration: "2024–2025",
+      role: "Internship in Python",
+      responsibilities: [
+        "Developed Python scripts and applications.",
+        "Gained experience with Pandas, NumPy, and Flask/Django.",
+        "Analyzed and visualized data using Python tools.",
+        "Applied problem-solving skills in collaborative projects.",
+      ],
+    },
+    {
+      id: "EXP-02",
+      company: "Pantech E-Learning",
+      location: "T. Nagar, Chennai",
+      duration: "2025–2026",
+      role: "Internship in MySQL",
+      responsibilities: [
+        "Practiced database management and querying using SQL.",
+        "Designed and optimized database schemas.",
+        "Developed complex SQL queries to extract insights.",
+        "Focused on data accuracy and integrity.",
+      ],
+    },
+    {
+      id: "EXP-03",
+      company: "Spring Communication",
+      location: "Pallikaranai, Chennai",
+      duration: "2025–2026",
+      role: "Internship in Cyber Security",
+      responsibilities: [
+        "Gained exposure to threat detection and incident response.",
+        "Learned security measures for vulnerabilities and attacks.",
+        "Worked with data encryption and access controls.",
+        "Studied incident response planning.",
+      ],
+    },
+  ];
+
   // COMPILED PROJECTS WITH ACTUAL LINKS AND IMPACT
   const projects = [
     {
@@ -479,25 +522,55 @@ export default function App() {
                 </h2>
               </FadeReveal>
 
-              <div className="space-y-8">
-                <FadeReveal delay={100}>
-                  <div className="border-l-2 border-zinc-800 pl-6 relative">
-                    <div className="absolute w-2 h-2 bg-[#ccff00] rounded-full -left-[5px] top-2"></div>
-                    <span className="font-mono text-xs text-zinc-500 uppercase">Jul 2025 // In-Plant Trainee</span>
-                    <h3 className="text-xl font-bold uppercase text-white mt-1">Chennai Port Trust</h3>
-                    <p className="text-sm text-zinc-400 mt-2 leading-relaxed">Industrial exposure to heavy electrical systems, port automation, safety protocols, and large-scale power distribution mechanics.</p>
-                  </div>
-                </FadeReveal>
+              <div className="space-y-6">
+                {experiences.map((experience) => (
+                  <article
+                    key={experience.id}
+                    className="border-b border-zinc-800 py-6 first:pt-0"
+                  >
+                    <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-start">
+                      <h3 className="text-xl font-bold text-white">
+                        {experience.company}
+                      </h3>
 
-                <FadeReveal delay={200}>
-                  <div className="border-l-2 border-zinc-800 pl-6 relative">
-                    <div className="absolute w-2 h-2 bg-zinc-600 rounded-full -left-[5px] top-2"></div>
-                    <span className="font-mono text-xs text-zinc-500 uppercase">2024 - 2025 // Core Certifications</span>
-                    <ul className="mt-3 space-y-2 text-sm text-zinc-300">
-                      <li className="flex items-start gap-2"><ArrowRight className="w-4 h-4 text-[#ccff00] shrink-0" /> Oracle Cloud AI Foundations Associate</li>
-                      <li className="flex items-start gap-2"><ArrowRight className="w-4 h-4 text-[#ccff00] shrink-0" /> Cisco CCNA: Intro to Networks</li>
-                      <li className="flex items-start gap-2"><ArrowRight className="w-4 h-4 text-[#ccff00] shrink-0" /> NPTEL: Industry 4.0, IIoT, Python</li>
+                      <span className="font-mono text-xs text-zinc-400">
+                        {experience.duration}
+                      </span>
+                    </div>
+
+                    <p className="mt-1 text-sm text-zinc-400">
+                      {experience.location}
+                    </p>
+
+                    <h4 className="mt-4 font-semibold text-[#ccff00]">
+                      {experience.role}
+                    </h4>
+
+                    <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-zinc-300">
+                      {experience.responsibilities.map((item, index) => (
+                        <li key={`${experience.id}-${index}`}>
+                          {item}
+                        </li>
+                      ))}
                     </ul>
+                  </article>
+                ))}
+
+                {/* Certifications Section */}
+                <FadeReveal delay={200}>
+                  <div className="border-l-2 border-zinc-800 pl-6 relative mt-8 pt-2">
+                    <div className="absolute w-2 h-2 bg-amber-400 rounded-full -left-[5px] top-3"></div>
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                      <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest font-bold">
+                        CERTIFICATIONS
+                      </span>
+                      <span className="font-mono text-[9px] uppercase tracking-widest px-2.5 py-0.5 bg-amber-400/10 text-amber-400 border border-amber-400/30 font-bold w-max">
+                        UNDER PROGRESS
+                      </span>
+                    </div>
+                    <p className="text-xs text-zinc-500 font-mono mt-2">
+                      Official credentials and certifications currently being compiled and verified.
+                    </p>
                   </div>
                 </FadeReveal>
               </div>
@@ -511,25 +584,20 @@ export default function App() {
                 </h2>
               </FadeReveal>
 
-              <div className="space-y-6">
-                {[
-                  { title: "1st Prize - Dev Arena", desc: "24-Hour Hackathon (AI Shop Floor System)" },
-                  { title: "1st Prize - TWYSTRA", desc: "National Symposium" },
-                  { title: "1st Prize - Big Prototype", desc: "Contest (Li-Fi System Integration)" },
-                  { title: "2nd Prize - Innovation Challenge", desc: "Technical Problem Solving" },
-                  { title: "Publication: NCSPCN-2025", desc: "Infrared-Based Music Transmitter/Receiver (SVCE)" }
-                ].map((honor, idx) => (
-                  <FadeReveal delay={idx * 100} key={idx}>
-                    <div className="bg-[#0a0a0c] border border-zinc-800 p-4 flex items-center gap-4 hover:border-[#ccff00] transition-colors">
-                      <Award className="w-6 h-6 text-[#ccff00] shrink-0" />
-                      <div>
-                        <h4 className="text-sm font-bold uppercase text-white">{honor.title}</h4>
-                        <p className="text-xs text-zinc-500 uppercase font-mono mt-1">{honor.desc}</p>
-                      </div>
+              <FadeReveal delay={100}>
+                <div className="bg-[#0a0a0c] border border-zinc-800 p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-l-2 border-l-amber-400 hover:border-[#ccff00] transition-colors">
+                  <div className="flex items-center gap-4">
+                    <Award className="w-6 h-6 text-[#ccff00] shrink-0" />
+                    <div>
+                      <h4 className="text-sm font-bold uppercase text-white tracking-wider">HONORS & PUBLICATIONS</h4>
+                      <p className="text-xs text-zinc-500 uppercase font-mono mt-1">Documentation and verified records updating soon</p>
                     </div>
-                  </FadeReveal>
-                ))}
-              </div>
+                  </div>
+                  <span className="font-mono text-[9px] uppercase tracking-widest px-2.5 py-1 bg-amber-400/10 text-amber-400 border border-amber-400/30 font-bold w-max">
+                    UNDER PROGRESS
+                  </span>
+                </div>
+              </FadeReveal>
             </div>
 
 
