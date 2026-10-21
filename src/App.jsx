@@ -1,20 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  ArrowRight, Cpu, Bot, CircuitBoard, 
+import {
+  ArrowRight, Cpu, Bot, CircuitBoard,
   Terminal, Globe, Award, Focus, Binary, Zap,
   ExternalLink, FileText, MapPin, GraduationCap, BarChart
 } from 'lucide-react';
 
 // Custom Github Icon SVG to replace the removed Lucide brand icon
 const GithubIcon = ({ className = "" }) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     className={className}
   >
     <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.02c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A4.8 4.8 0 0 0 8 18v4"></path>
@@ -55,11 +55,10 @@ const FadeReveal = ({ children, delay = 0, className = "", direction = "up" }) =
   };
 
   return (
-    <div 
-      ref={ref} 
-      className={`transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${
-        isVisible ? 'opacity-100 translate-y-0 translate-x-0 scale-100' : `opacity-0 ${translates[direction]}`
-      } ${className}`}
+    <div
+      ref={ref}
+      className={`transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${isVisible ? 'opacity-100 translate-y-0 translate-x-0 scale-100' : `opacity-0 ${translates[direction]}`
+        } ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
@@ -75,7 +74,7 @@ const ScrambleHeading = ({ text, delay = 0, className = "" }) => {
 
   useEffect(() => {
     if (!isVisible) return;
-    
+
     let iteration = 0;
     let interval = null;
 
@@ -109,7 +108,7 @@ const HoverProjectCard = ({ project, index }) => {
   return (
     <FadeReveal delay={(index % 3) * 100} className="h-full">
       <div className="relative h-[360px] bg-[#0a0a0c] border border-zinc-800 group overflow-hidden cursor-none interactive-element">
-        
+
         {/* FRONT STATE (Default) */}
         <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between z-10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-0 group-hover:scale-95 group-hover:-translate-y-8 bg-[#0a0a0c]">
           <div>
@@ -122,7 +121,7 @@ const HoverProjectCard = ({ project, index }) => {
             </h3>
           </div>
           <div className="flex flex-col gap-3">
-             <div className="font-mono text-[10px] text-[#ccff00] uppercase tracking-widest flex items-center gap-2">
+            <div className="font-mono text-[10px] text-[#ccff00] uppercase tracking-widest flex items-center gap-2">
               <Focus className="w-4 h-4 animate-pulse" /> Hover to decrypt & view links
             </div>
             {/* Impact Sneak Peek */}
@@ -149,7 +148,7 @@ const HoverProjectCard = ({ project, index }) => {
               ))}
             </div>
           </div>
-          
+
           {/* Action Links Container (Clickable) */}
           <div className="flex items-center gap-3 relative z-30 pointer-events-auto">
             {project.github && (
@@ -163,9 +162,9 @@ const HoverProjectCard = ({ project, index }) => {
               </a>
             )}
             {!project.github && !project.live && (
-               <span className="text-[10px] font-mono font-bold uppercase text-black/50 border border-black/10 px-3 py-2">
-                 Internal / Offline Build
-               </span>
+              <span className="text-[10px] font-mono font-bold uppercase text-black/50 border border-black/10 px-3 py-2">
+                Internal / Offline Build
+              </span>
             )}
           </div>
         </div>
@@ -189,11 +188,11 @@ export default function App() {
   useEffect(() => {
     const handleMouseMove = (e) => {
       mousePosition.current = { x: e.clientX, y: e.clientY };
-      
+
       // Update hovering state only for CSS styling changes
       const target = e.target;
       const isInteractive = target.closest('a') || target.closest('button') || target.closest('.interactive-element');
-      
+
       setIsHovering(!!isInteractive);
     };
 
@@ -208,7 +207,7 @@ export default function App() {
 
       requestRef.current = requestAnimationFrame(animateCursor);
     };
-    
+
     window.addEventListener('mousemove', handleMouseMove);
     requestRef.current = requestAnimationFrame(animateCursor);
 
@@ -284,22 +283,21 @@ export default function App() {
 
   return (
     <div className="custom-cursor-wrapper min-h-screen bg-[#050505] text-[#f4f4f5] font-sans selection:bg-[#ccff00] selection:text-black overflow-x-hidden">
-      
+
       {/* Magnetic Box Cursor - Now optimized for smooth fluid trailing */}
-      <div 
+      <div
         ref={cursorRef}
         className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference hidden md:block"
       >
         {/* Inner div manages the stylistic transitions without delaying the position tracking */}
-        <div className={`flex items-center justify-center border-2 border-[#ccff00] rounded-none transition-all duration-300 ease-out transform -translate-x-1/2 -translate-y-1/2 ${
-            isHovering ? 'w-12 h-12 bg-[#ccff00]/20 backdrop-blur-sm scale-110' : 'w-6 h-6'
-        }`}>
+        <div className={`flex items-center justify-center border-2 border-[#ccff00] rounded-none transition-all duration-300 ease-out transform -translate-x-1/2 -translate-y-1/2 ${isHovering ? 'w-12 h-12 bg-[#ccff00]/20 backdrop-blur-sm scale-110' : 'w-6 h-6'
+          }`}>
           <div className={`bg-[#ccff00] transition-all duration-300 ${isHovering ? 'w-2 h-2 opacity-50' : 'w-1 h-1'}`}></div>
         </div>
       </div>
 
-      <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.03]" 
-           style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '50px 50px' }}>
+      <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.03]"
+        style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '50px 50px' }}>
       </div>
 
       {/* TOP NAV */}
@@ -310,8 +308,8 @@ export default function App() {
             <span>Hrithik P</span>
           </div>
           <div className="flex items-center gap-6">
-            <a 
-              href={resumeUrl} 
+            <a
+              href={resumeUrl}
               download="Hrithik_P_Resume.pdf"
               target="_blank"
               rel="noreferrer"
@@ -326,17 +324,18 @@ export default function App() {
       </header>
 
       <main className="relative z-10 max-w-[1600px] mx-auto min-h-screen flex flex-col">
-        
+
         {/* HERO SECTION */}
         <section className="min-h-[100svh] pt-32 pb-16 px-4 md:px-8 flex flex-col justify-center border-b border-zinc-900 relative overflow-hidden">
-          
+
           {/* Portrait removed as requested. Preserve the original hero composition. */}
 
           <div className="w-full mb-8 z-10 cursor-default relative">
+
             <h1 className="flex flex-col font-black uppercase tracking-tighter leading-[0.85] text-[clamp(3.5rem,11vw,12rem)] w-full">
-              <ScrambleHeading text="HARDWARE." delay={100} className="text-white" />
-              <ScrambleHeading text="SOFTWARE." delay={600} className="text-transparent [-webkit-text-stroke:1px_#52525b] md:[-webkit-text-stroke:2px_#52525b]" />
-              <ScrambleHeading text="SYSTEMS." delay={1100} className="text-[#ccff00]" />
+              <ScrambleHeading text="DATA ANALYST." delay={100} className="text-white" />
+              <ScrambleHeading text="HARDWARE." delay={600} className="text-transparent [-webkit-text-stroke:1px_#52525b] md:[-webkit-text-stroke:2px_#52525b]" />
+              <ScrambleHeading text="SOFTWARE." delay={1100} className="text-[#ccff00]" />
             </h1>
           </div>
 
@@ -354,16 +353,16 @@ export default function App() {
                 <li className="flex items-center gap-2"><GraduationCap className="w-4 h-4 text-[#ccff00]" /> BCA Graduate @ Patrician College of Arts and Science</li>
               </ul>
             </div>
-            
+
             <div className="w-full lg:w-2/3 relative z-20">
               <p className="text-sm md:text-lg font-medium text-zinc-400 leading-relaxed max-w-4xl mb-8">
                 Driven by curiosity and a passion for building meaningful digital experiences, I turn ideas into practical applications through thoughtful design, problem-solving, and software development. I believe in continuously learning, exploring new technologies, and creating solutions that are intuitive, efficient, and built to make a difference.
               </p>
-              
+
               {/* HARD-HITTING CTAS */}
               <div className="flex flex-wrap gap-4">
-                <a 
-                  href={resumeUrl} 
+                <a
+                  href={resumeUrl}
                   download="Hrithik_P_Resume.pdf"
                   target="_blank"
                   rel="noreferrer"
@@ -381,11 +380,11 @@ export default function App() {
 
         {/* --- BRUTALIST QUOTE BANNER --- */}
         <section className="py-12 md:py-16 bg-[#ccff00] border-b border-zinc-900 flex items-center justify-center px-4">
-           <FadeReveal>
-             <h2 className="text-black font-black uppercase tracking-tighter text-xl md:text-3xl lg:text-5xl text-center max-w-5xl leading-tight">
-               "A JACK OF ALL TRADES IS A MASTER OF NONE, <br className="hidden md:block"/> BUT OFTENTIMES BETTER THAN A MASTER OF ONE."
-             </h2>
-           </FadeReveal>
+          <FadeReveal>
+            <h2 className="text-black font-black uppercase tracking-tighter text-xl md:text-3xl lg:text-5xl text-center max-w-5xl leading-tight">
+              "A JACK OF ALL TRADES IS A MASTER OF NONE, <br className="hidden md:block" /> BUT OFTENTIMES BETTER THAN A MASTER OF ONE."
+            </h2>
+          </FadeReveal>
         </section>
 
         {/* --- SYSTEM ARCHITECTURE MATRIX --- */}
@@ -443,7 +442,7 @@ export default function App() {
         {/* --- EXPERIENCE & AWARDS SECTION --- */}
         <section className="py-24 md:py-32 px-4 md:px-8 bg-[#050505] border-b border-zinc-900">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 max-w-6xl mx-auto">
-            
+
             {/* Experience & Certs */}
             <div>
               <FadeReveal>
@@ -451,7 +450,7 @@ export default function App() {
                   Experience & Certifications
                 </h2>
               </FadeReveal>
-              
+
               <div className="space-y-8">
                 <FadeReveal delay={100}>
                   <div className="border-l-2 border-zinc-800 pl-6 relative">
@@ -483,7 +482,7 @@ export default function App() {
                   Honors & Publications
                 </h2>
               </FadeReveal>
-              
+
               <div className="space-y-6">
                 {[
                   { title: "1st Prize - Dev Arena", desc: "24-Hour Hackathon (AI Shop Floor System)" },
@@ -526,9 +525,9 @@ export default function App() {
               <FadeReveal delay={200}>
                 <div className="w-full bg-[#0a0a0c] border border-zinc-800 p-4 md:p-8 hover:border-[#ccff00] transition-colors flex items-center justify-center cursor-none interactive-element relative overflow-hidden group">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(204,255,0,0.05),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-                  <img 
-                    src="https://streak-stats.demolab.com?user=Hrithik1881&theme=chartreuse-dark&border_radius=0&mode=weekly" 
-                    alt="Hrithik P GitHub Streak Stats" 
+                  <img
+                    src="https://streak-stats.demolab.com?user=Hrithik1881&theme=chartreuse-dark&border_radius=0&mode=weekly"
+                    alt="Hrithik P GitHub Streak Stats"
                     className="w-full max-w-3xl object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300 filter contrast-125 relative z-10"
                   />
                 </div>
@@ -573,7 +572,7 @@ export default function App() {
             <div className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest border-2 border-black px-4 py-2 mb-8 md:mb-12">
               [ Open For Opportunities & Custom Builds ]
             </div>
-            
+
             <a href="mailto:hrithik1881@gmail.com" className="group relative block w-full cursor-none">
               <h2 className="text-[12vw] md:text-[8vw] font-black uppercase tracking-tighter leading-none group-hover:tracking-widest transition-all duration-700 text-left md:text-center">
                 GET IN TOUCH
@@ -581,26 +580,26 @@ export default function App() {
             </a>
 
             <div className="mt-12 flex flex-col sm:flex-row gap-4 w-full justify-center">
-               <a 
-                 href={resumeUrl} 
-                 download="Hrithik_P_Resume.pdf"
-                 target="_blank"
-                 rel="noreferrer"
-                 className="flex items-center justify-center gap-2 border-2 border-black bg-black text-[#ccff00] px-8 py-4 text-sm md:text-base font-bold uppercase tracking-widest hover:bg-transparent hover:text-black transition-colors cursor-none interactive-element"
-               >
-                  <FileText className="w-5 h-5" /> Download Resume
-               </a>
-               <a href="https://www.linkedin.com/in/hrithik-p-990398284" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 border-2 border-black text-black px-8 py-4 text-sm md:text-base font-bold uppercase tracking-widest hover:bg-black hover:text-[#ccff00] transition-colors cursor-none interactive-element">
-                  <ArrowRight className="w-5 h-5" /> Connect on LinkedIn
-               </a>
+              <a
+                href={resumeUrl}
+                download="Hrithik_P_Resume.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-2 border-2 border-black bg-black text-[#ccff00] px-8 py-4 text-sm md:text-base font-bold uppercase tracking-widest hover:bg-transparent hover:text-black transition-colors cursor-none interactive-element"
+              >
+                <FileText className="w-5 h-5" /> Download Resume
+              </a>
+              <a href="https://www.linkedin.com/in/hrithik-p-990398284" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 border-2 border-black text-black px-8 py-4 text-sm md:text-base font-bold uppercase tracking-widest hover:bg-black hover:text-[#ccff00] transition-colors cursor-none interactive-element">
+                <ArrowRight className="w-5 h-5" /> Connect on LinkedIn
+              </a>
             </div>
-            
+
             <p className="mt-8 font-bold text-black/70 max-w-md mx-auto text-sm md:text-base text-center">
               Constantly learning, constantly building. Let's engineer something real.
             </p>
           </FadeReveal>
         </section>
-        
+
         <footer className="py-8 px-4 md:px-8 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 font-mono text-[9px] md:text-[10px] text-zinc-500 uppercase tracking-widest bg-[#050505]">
           <div>© {new Date().getFullYear()} HRITHIK P <br className="md:hidden" /> // APP DEVELOPER</div>
           <div className="flex flex-wrap gap-4 md:gap-8">
@@ -613,7 +612,8 @@ export default function App() {
       </main>
 
       {/* Global CSS */}
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700;900&display=swap');
 
         html { 
