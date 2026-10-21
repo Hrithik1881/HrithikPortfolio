@@ -183,6 +183,7 @@ export default function App() {
   const mousePosition = useRef({ x: -100, y: -100 }); // Target
   const cursorPosition = useRef({ x: -100, y: -100 }); // Current animated
   const [isHovering, setIsHovering] = useState(false);
+  const resumeUrl = `${import.meta.env.BASE_URL}Hrithik_P_Resume.pdf`;
 
   // Global mouse tracking optimized with Lerp (Linear Interpolation) for fluid smoothness
   useEffect(() => {
@@ -309,7 +310,13 @@ export default function App() {
             <span>Hrithik P</span>
           </div>
           <div className="flex items-center gap-6">
-            <a href="#contact" className="hidden md:inline-flex items-center gap-2 border border-[#ccff00] text-[#ccff00] px-3 py-1 hover:bg-[#ccff00] hover:text-black transition-colors cursor-none interactive-element">
+            <a 
+              href={resumeUrl} 
+              download="Hrithik_P_Resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="hidden md:inline-flex items-center gap-2 border border-[#ccff00] text-[#ccff00] px-3 py-1 hover:bg-[#ccff00] hover:text-black transition-colors cursor-none interactive-element"
+            >
               <FileText className="w-3 h-3" />
               DOWNLOAD RESUME
             </a>
@@ -355,7 +362,13 @@ export default function App() {
               
               {/* HARD-HITTING CTAS */}
               <div className="flex flex-wrap gap-4">
-                <a href="#contact" className="flex items-center gap-2 bg-[#ccff00] text-black px-6 py-3 font-bold uppercase tracking-widest hover:bg-white transition-colors cursor-none interactive-element">
+                <a 
+                  href={resumeUrl} 
+                  download="Hrithik_P_Resume.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 bg-[#ccff00] text-black px-6 py-3 font-bold uppercase tracking-widest hover:bg-white transition-colors cursor-none interactive-element"
+                >
                   <FileText className="w-4 h-4" /> View Resume
                 </a>
                 <a href="https://github.com/Hrithik1881" target="_blank" rel="noreferrer" className="flex items-center gap-2 border border-zinc-700 text-white px-6 py-3 font-bold uppercase tracking-widest hover:border-[#ccff00] hover:text-[#ccff00] transition-colors cursor-none interactive-element bg-[#050505]/50 backdrop-blur-sm">
@@ -568,7 +581,13 @@ export default function App() {
             </a>
 
             <div className="mt-12 flex flex-col sm:flex-row gap-4 w-full justify-center">
-               <a href="#contact" className="flex items-center justify-center gap-2 border-2 border-black bg-black text-[#ccff00] px-8 py-4 text-sm md:text-base font-bold uppercase tracking-widest hover:bg-transparent hover:text-black transition-colors cursor-none interactive-element">
+               <a 
+                 href={resumeUrl} 
+                 download="Hrithik_P_Resume.pdf"
+                 target="_blank"
+                 rel="noreferrer"
+                 className="flex items-center justify-center gap-2 border-2 border-black bg-black text-[#ccff00] px-8 py-4 text-sm md:text-base font-bold uppercase tracking-widest hover:bg-transparent hover:text-black transition-colors cursor-none interactive-element"
+               >
                   <FileText className="w-5 h-5" /> Download Resume
                </a>
                <a href="https://www.linkedin.com/in/hrithik-p-990398284" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 border-2 border-black text-black px-8 py-4 text-sm md:text-base font-bold uppercase tracking-widest hover:bg-black hover:text-[#ccff00] transition-colors cursor-none interactive-element">
